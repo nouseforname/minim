@@ -9,7 +9,8 @@ if($language=='de'){
 		'Page doesn\'t exist'=>'Seite existiert nicht',
 		'Post doesn\'t exist'=>'Eintrag existiert nicht',
 		'There aren\'t any posts'=>'Es sind keine Einträge vorhanden',
-		'To the main page'=>'Zur Startseite'
+		'To the main page'=>'Zur Startseite',
+		'Search'=>'Suche'
 	);
 }
 if($language=='en'){
@@ -19,7 +20,8 @@ if($language=='en'){
 		'Page doesn\'t exist'=>'Page doesn\'t exist',
 		'Post doesn\'t exist'=>'Post doesn\'t exist',
 		'There aren\'t any posts'=>'There aren\'t any posts',
-		'To the main page'=>'To the main page'
+		'To the main page'=>'To the main page',
+		'Search'=>'Search'
 	);
 }
 function translation($phrase){
