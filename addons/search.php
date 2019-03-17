@@ -7,6 +7,7 @@ to the place where you want to have the search form.
 if(basename($_SERVER['PHP_SELF'])==basename(__FILE__)){
 	die('Access denied.');
 }
+
 require_once('./system/language.php');
 if($language=='de'){
   $translation=array_merge($translation,array(
@@ -16,7 +17,7 @@ if($language=='de'){
     'Search'=>'suchen')
   );
 }
-if($language=='en'){
+else if($language=='en'){
   $translation=array_merge($translation,array(
     'Empty search item'=>'Empty search item',
     'hits'=>'hits',

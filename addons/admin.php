@@ -19,8 +19,9 @@ if(basename($_SERVER['PHP_SELF'])==basename(__FILE__))
 {
   die('Access denied.');
 }
+session_start();
 
-if(parse_url($_SERVER['REQUEST_URI'],PHP_URL_QUERY)==='admin-logout')
+if(parse_url($_SERVER['REQUEST_URI'],PHP_URL_QUERY) === 'admin-logout')
 {
   unset($_SESSION['login']); 
   session_destroy();
@@ -53,9 +54,8 @@ if(isset($_POST['cancel_config']))
   header('location:'.$_SERVER['REQUEST_URI']);
 }
 
-if(parse_url($_SERVER['REQUEST_URI'],PHP_URL_QUERY)===$admin)
+if(parse_url($_SERVER['REQUEST_URI'],PHP_URL_QUERY) === $admin)
 {
-  session_start();
   if(isset($_POST['login']))
   {
     $_POST['password']=hash('sha512',$_POST['password']);
@@ -120,7 +120,7 @@ if(parse_url($_SERVER['REQUEST_URI'],PHP_URL_QUERY)===$admin)
     );
   }
 
-  if(isset($_SESSION['login'])&&$_SESSION['login']==true)
+  if(isset($_SESSION['login']) && $_SESSION['login']==true)
   {
     echo'<header><h2>'.translation('Administration').'</h2><p><a href="./?admin-logout">'.translation('Logout').'</a></p></header><main><article><h2 id="posts">'.translation('Posts').'</h2><form action="./?'. $admin .'" method="post" enctype="multipart/form-data"><input type="file" name="file[]" multiple><input type="submit" name="upload_post" value="'.translation('Upload').'"></form>';
     
@@ -305,9 +305,13 @@ if(parse_url($_SERVER['REQUEST_URI'],PHP_URL_QUERY)===$admin)
     if(!empty($files))
     {
       sort($files);
-      for($i=0;$i<count($files);$i++)
+      for($i=0; $i<count($files); $i++)
       {
-        echo'<form action="./?'. $admin .'#uploads" method="post"><input type="checkbox" name="delete_confirmation" value="confirmed">['.date($date,filemtime('./uploads/'.$files[$i])).'] <a href="./uploads/'.$files[$i].'" download="'.$files[$i].'">'.$files[$i].'</a> <input type="hidden" name="file" value="'.$files[$i].'"><input type="submit" name="delete_file" value="'.translation('Delete').'"></form>';
+        echo'<form action="./?'. $admin .'#uploads" method="post">
+        <input type="checkbox" name="delete_confirmation" value="confirmed">['.date($date,filemtime('./uploads/'.$files[$i])).'] <a href="./uploads/'.$files[$i].'" download="'.$files[$i].'">'.$files[$i].'</a> 
+        <input type="hidden" name="file" value="'.$files[$i].'">
+        <input type="submit" name="delete_file" value="'.translation('Delete').'">
+        </form>';
       }
     }
     echo'</article><article><h2 id="configurations">'.translation('Configurations').'</h2>';
