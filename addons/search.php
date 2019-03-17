@@ -7,6 +7,24 @@ to the place where you want to have the search form.
 if(basename($_SERVER['PHP_SELF'])==basename(__FILE__)){
 	die('Access denied.');
 }
+require_once('./system/language.php');
+if($language=='de'){
+  $translation=array_merge($translation,array(
+    'Empty search item'=>'Kein Suchbegriff eingegeben',
+    'hits'=>'Treffer',
+    'Only characters, numbers and spaces allowed'=>'Es sind nur Buchstaben, Nummern und Leerzeichen erlaubt',
+    'Search'=>'suchen')
+  );
+}
+if($language=='en'){
+  $translation=array_merge($translation,array(
+    'Empty search item'=>'Empty search item',
+    'hits'=>'hits',
+    'Only characters, numbers and spaces allowed'=>'Only characters, numbers and spaces allowed',
+    'Search'=>'search')
+  );
+}
+
 if(parse_url($_SERVER['REQUEST_URI'],PHP_URL_QUERY)=='search'){
 	$category='search';
 	require_once('./system/header.php');
@@ -16,7 +34,7 @@ if(parse_url($_SERVER['REQUEST_URI'],PHP_URL_QUERY)=='search'){
 			'Empty search item'=>'Kein Suchbegriff eingegeben',
 			'hits'=>'Treffer',
 			'Only characters, numbers and spaces allowed'=>'Es sind nur Buchstaben, Nummern und Leerzeichen erlaubt',
-			'Search'=>'Suchen')
+			'Search'=>'www')
 		);
 	}
 	if($language=='en'){
@@ -24,7 +42,7 @@ if(parse_url($_SERVER['REQUEST_URI'],PHP_URL_QUERY)=='search'){
 			'Empty search item'=>'Empty search item',
 			'hits'=>'hits',
 			'Only characters, numbers and spaces allowed'=>'Only characters, numbers and spaces allowed',
-			'Search'=>'Search')
+			'Search'=>'search')
 		);
 	}
 	$posts=array();
