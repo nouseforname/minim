@@ -1,18 +1,24 @@
 <?php
 
-if(basename($_SERVER['PHP_SELF'])==basename(__FILE__))
-{
-  die('Access denied.');
+if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
+    die('Access denied.');
 }
 
-header('Content-Type:text/html;charset='.$encoding);
+header('Content-Type:text/html;charset=' . $encoding);
 
-require_once('./system/language.php');
+require_once './system/language.php';
 
-if(isset($post_title)) $title=$title.' | '.$post_title;
-if(isset($post_description)) $description=$post_description;
-if(isset($post_robots)) $robots=$post_robots;
+if (isset($post_title)) {
+    $title = $title . ' | ' . $post_title;
+}
 
+if (isset($post_description)) {
+    $description = $post_description;
+}
+
+if (isset($post_robots)) {
+    $robots = $post_robots;
+}
 
 echo <<<HEREDOC
 <!doctype html>
@@ -20,12 +26,11 @@ echo <<<HEREDOC
   <head>
 HEREDOC;
 
-if(is_file('./config/head.php'))
-  include('./config/head.php');
-else
-{
-  echo <<<HEREDOC
-  
+if (is_file('./config/head.php')) {
+    include './config/head.php';
+} else {
+    echo <<<HEREDOC
+
     <title>$title</title>
 
     <meta charset="$encoding">
@@ -40,22 +45,21 @@ HEREDOC;
 }
 
 echo <<<HEREDOC
-    
+
   </head>
-  <body class="$category">
+  <body class = "$category">
 HEREDOC;
 
-require_once('./system/markdown.php');
+require_once './system/markdown.php';
 $markdown = markdown(file_get_contents('./config/header.md'));
 echo <<<HEREDOC
-    
+
     <header>
       $markdown
     </header>
 HEREDOC;
 
-include('./system/pages.php');
-
+include './system/pages.php';
 
 $pagesMenu = <<<HEREDOC
 
@@ -67,9 +71,8 @@ $pagesMenu = <<<HEREDOC
 
 HEREDOC;
 
-for($i=1; $i<count($pages); $i++)
-{
-  $pagesMenu .= "\t\t" . '<li><a href="?page-'.$pages[$i].'">'.pathinfo($pages[$i],PATHINFO_FILENAME).'</a></li>' . "\n";
+for ($i = 1; $i < count($pages); $i++) {
+    $pagesMenu .= "\t\t" . '<li><a href="?page-' . $pages[$i] . '">' . pathinfo($pages[$i], PATHINFO_FILENAME) . '</a></li>' . "\n";
 }
 
 $pagesMenu .= <<<HEREDOC
@@ -77,11 +80,12 @@ $pagesMenu .= <<<HEREDOC
       </nav>
 HEREDOC;
 
-if (count($pages) >0 ) echo $pagesMenu;
+if (count($pages) > 0) {
+    echo $pagesMenu;
+}
 
 echo <<<HEREDOC
 
     <main>
-  
+
 HEREDOC;
-?>

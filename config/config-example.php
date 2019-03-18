@@ -1,42 +1,43 @@
 <?php
 
 // Title
-$title='minim';
+$title = 'minim';
 
 // Description
-$description='minim - Fast, Flat and File-Based Blog Management System';
+$description = 'minim - Fast, Flat and File-Based Blog Management System';
 
 // Language
-$language='en';
+$language = 'en';
 
 // Encoding
-$encoding='utf-8';
+$encoding = 'utf-8';
 
 // Robots
-$robots='noindex,nofollow';
+$robots = 'noindex,nofollow';
 
 // Theme
-$theme='default';
+$theme = 'default';
 
 // Menu name
-$menu='Blog';
+$menu = 'Blog';
 
 // Entries per site
-$segmentation=5;
+$segmentation = 5;
 
 // Preview length (characters)
-$preview=400;
+$preview = 400;
 
 // Date format file modification
-$date='Y-m-d H:i:s';
+$date = 'Y-m-d H:i:s';
 
 // RSS entries: 0 to display all entries in the feed
-$rss=5;
+$rss = 5;
 
 // Enabled addons
-$addons=array(
-	//'admin.php',
-	//'search.php',
+$addons = array(
+    //'admin.php',
+    //'search.php',
 );
 
-?>
+// Post/Pages file extension
+$fileExt = '.md';
